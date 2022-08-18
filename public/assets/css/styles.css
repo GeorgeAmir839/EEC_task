@@ -1259,13 +1259,13 @@ img {
 .site-button.support-button {
     border: 1px solid #fff;
     background-color: #13562d;
-    float: right;
+    float: left;
     margin: 7px 5px;
 	transition: all 0.5s;
 	border-radius: 3px;
 }
 .site-button.support-button:hover {
-	background-color: #828cff;
+	background-color: hsl(136, 66%, 35%);
 	transition: all 0.5s;
 }
 .text-yellow{
