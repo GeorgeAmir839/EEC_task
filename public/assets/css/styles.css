@@ -720,6 +720,7 @@ header .intro-section .buttons {
     min-width: 100px;
     padding: 11px 20px;
 }
+
 .features .feature:hover .icon-container .icon, footer .contact-button:hover {
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding;
@@ -1264,6 +1265,7 @@ img {
 	transition: all 0.5s;
 	border-radius: 3px;
 }
+
 .site-button.support-button:hover {
 	background-color: hsl(136, 66%, 35%);
 	transition: all 0.5s;

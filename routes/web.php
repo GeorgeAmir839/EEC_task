@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PharmacyController;
 
@@ -15,8 +17,12 @@ use App\Http\Controllers\PharmacyController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Front-end
+Route::get('/', [HomeController::class,'index'])->name('home');
+// Products Routes
 Route::resource('products', ProductController::class);
+// Route::post('/products/search', [ProductController::class,'products_search'])->name('products.search');
+Route::post('/products/ajax/search', [HomeController::class,'products_ajax_search'])->name('products.ajax.search');
+
+// Pharmacies Routes
 Route::resource('pharmacies', PharmacyController::class);
