@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Pharmacy;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ProductRequest;
 class ProductController extends Controller
 {
     /**
@@ -42,7 +42,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $input = $request->except('pharmacies');
         if ($request->image) {
@@ -91,12 +91,16 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         if ($request->has('pharmacies')) {
             $product->pharmacies()->sync($request->pharmacies);
         }
         $input = $request->except('pharmacies');
+        if ($request->image) {
+            $input['image'] = $this->storeImage($request->image, "products");
+
+        }
         $product = $product->update($input);
         if ($product) {
             

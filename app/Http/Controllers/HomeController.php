@@ -10,6 +10,11 @@ class HomeController extends Controller
     {
         return view('index');
     }
+    public function product_search(Request $request)
+    {
+        
+        return view('products.search-page');
+    }
     public function products_ajax_search(Request $request)
     {
         

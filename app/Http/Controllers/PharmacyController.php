@@ -6,6 +6,7 @@ use App\Models\Pharmacy;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Termwind\Components\Dd;
+use App\Http\Requests\PharmacyRequest;
 
 class PharmacyController extends Controller
 {
@@ -43,7 +44,7 @@ class PharmacyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PharmacyRequest $request)
     {
 
         $input = $request->all();
@@ -75,7 +76,7 @@ class PharmacyController extends Controller
      * @param  \App\Models\Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pharmacy $pharmacy)
+    public function update(PharmacyRequest $request, Pharmacy $pharmacy)
     {
 
         if ($request->has('products')) {

@@ -7,6 +7,7 @@ use App\Models\Pharmacy;
 use App\Models\Product;
 use App\Traits\apiResponseTrait;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -43,20 +44,13 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        // $validator  = Validator::make($request->all(),
-        // [
-        //     'name' => 'required|max:255',
-        //     'level' => 'required|max:255',
-        //     'category_id'=> 'required',
-        // ]);
-
-        // if ($validator->fails())
-        // {
-        //     return $this->apiResponse(null,$validator->errors(),400);
-        // }
         $input = $request->except('pharmacies');
+        if ($request->image) {
+            $input['image'] = $this->storeImage($request->image, "products");
+
+        }
         $product = Product::create($input);
         if ($request->has('pharmacies')) {
             $product->pharmacies()->attach($request->pharmacies);
@@ -77,7 +71,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
        
         $product = Product::find($id);
@@ -85,6 +79,10 @@ class ProductController extends Controller
             $product->pharmacies()->sync($request->pharmacies);
         }
         $input = $request->except('pharmacies');
+        if ($request->image) {
+            $input['image'] = $this->storeImage($request->image, "products");
+
+        }
         if(!$product)
         {
             return $this->apiResponse(null,'Not Found',404);
