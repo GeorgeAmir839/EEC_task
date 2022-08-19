@@ -9,9 +9,9 @@
         </div>
         <div class="nav-bar">
             <ul class="list-unstyled content-scroll components navbar-nav nav" id="download-button">
-                <li class="active"><a href="#introduction">Introduction</a></li>
+                <li class="active"><a href="{{route('')}}">Home</a></li>
                 <li><a href="{{route('products.index')}}">Our Product</a></li>
-                <li><a href="#folder_directories">Our Pharmacy</a></li>
+                <li><a href="{{route('pharmacies.index')}}">Our Pharmacy</a></li>
                 {{-- <li><a href="#theme-feature">Theme Features</a></li> --}}
                 {{-- <li><a href="#plugins"> Plugins</a></li>
                 <li><a href="#html_structure">Html Structure</a></li>

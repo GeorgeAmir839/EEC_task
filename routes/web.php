@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PharmacyController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +19,4 @@ Route::get('/', function () {
     return view('index');
 });
 Route::resource('products', ProductController::class);
-Route::resource('pharmacies', 'PharmacyController');
+Route::resource('pharmacies', PharmacyController::class);

@@ -9,6 +9,8 @@
     <script src="{{ URL::asset('assets/js/custom.js') }}"></script>
     <script src="{{ URL::asset('assets/js/scrollbar.min.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/jstree/dist/jstree.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
         // prettyPhoto
         jQuery(document).ready(function() {
@@ -53,5 +55,9 @@
                 }
             });
         });
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
     </script>
+    
 @yield("js")

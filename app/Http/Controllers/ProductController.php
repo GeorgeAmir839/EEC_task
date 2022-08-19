@@ -19,7 +19,7 @@ class ProductController extends Controller
         $products = Product::orderBy('created_at', 'desc');
         if ($request->has('search')) {
             $sort_search = $request->search;
-            $products = $products->where('title', 'like', '%' . $sort_search . '%');
+            $products = $products->where('name', 'like', '%' . $sort_search . '%');
         }
         $products = $products->paginate(15);
         return view('products.index', compact('products', 'sort_search'));
@@ -44,7 +44,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate(
             request(),
             [
@@ -52,23 +51,19 @@ class ProductController extends Controller
               
             ]
         );
-        
- 
-        $input = $request->all();
+        $input = $request->except('pharmacies');
         if ($request->image) {
             $input['image'] = $this->storeImage($request->image, "products");
 
         }
-    //    dd($input);
         $product = Product::create($input);
-        // dd($product);
-        // if ($request->has('pharmacies')) {
-        //     $product->pharmacies()->attach($request->pharmacies);
-        // }
+        if ($request->has('pharmacies')) {
+            $product->pharmacies()->attach($request->pharmacies);
+        }
         if ($product) {
-            return redirect()->route('products.index')->with('message', 'inserted successfully');;
+            return redirect()->route('products.index')->with('message', 'inserted successfully');
         } else {
-            return back()->with('message', 'error');;
+            return back()->with('error', 'something went wrong');
         }
     }
 
@@ -91,7 +86,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $pharmacy_ids = $product->pharmacies->pluck('id')->toArray();
+        $pharmacies = Pharmacy::all();
+        return view("products.edit", compact('product', 'pharmacies', 'pharmacy_ids'));
     }
 
     /**
@@ -103,7 +100,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        if ($request->has('pharmacies')) {
+            $product->pharmacies()->sync($request->pharmacies);
+        }
+        $input = $request->except('pharmacies');
+        $product = $product->update($input);
+        if ($product) {
+            
+            return redirect()->route('products.index')->with('message', 'updated successfully');
+        } else {
+            
+            return back()->with('error', 'something went wrong');
+        }
     }
 
     /**
@@ -114,6 +122,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product = $product->delete();
+
+        if ($product) {
+            
+            return redirect()->route('products.index')->with('message', 'deleted successfully');
+        } else {
+            
+            return back()->with('message', 'something went wrong');
+        }
     }
 }

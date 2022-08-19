@@ -9,14 +9,13 @@
         </div>
     @endif
 
-    @if(Session::has('danger'))
-        <div class="alert alert-danger"
-             style="font-weight: bold"> {{ Session::get('danger') }}</div>
+
+    @if (session()->has('error'))
+        <div class="alert alert-danger" style="font-weight: bold"> {{ session()->get('error') }}</div>
+    @endif
+    @if (session()->has('message'))
+        <div class="alert alert-success" style="font-weight: bold"> {{ session()->get('message') }}</div>
     @endif
 
-    @if(Session::has('success'))
-        <div class="alert alert-success"
-             style="font-weight: bold"> {{ Session::get('success') }}</div>
-    @endif
 
 </div>

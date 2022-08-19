@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/jstree/dist/themes/default/style.min.css') }}">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800|Raleway:100,200,300,400,500,600,700,800,900"
