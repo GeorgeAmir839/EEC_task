@@ -61,23 +61,6 @@ class PharmacyController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pharmacy  $pharmacy
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pharmacy $pharmacy)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pharmacy  $pharmacy
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Pharmacy $pharmacy)
     {
         $product_ids = $pharmacy->products->pluck('id')->toArray();

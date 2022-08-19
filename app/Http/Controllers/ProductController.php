@@ -44,13 +44,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(
-            request(),
-            [
-                // 'name' => 'required|max:120',
-              
-            ]
-        );
         $input = $request->except('pharmacies');
         if ($request->image) {
             $input['image'] = $this->storeImage($request->image, "products");
