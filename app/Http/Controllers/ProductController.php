@@ -19,12 +19,30 @@ class ProductController extends Controller
         $products = Product::orderBy('created_at', 'desc');
         if ($request->has('search')) {
             $sort_search = $request->search;
-            $products = $products->where('name', 'like', '%' . $sort_search . '%');
+            $products = $products->where('title', 'like', '%' . $sort_search . '%');
         }
         $products = $products->paginate(15);
         return view('products.index', compact('products', 'sort_search'));
     }
+    public function product_search(Request $request)
+    {
+        
+        return view('products.search-page');
+    }
+    public function products_ajax_search(Request $request)
+    {
+        
+        $products = Product::where('title', 'like',  '%'.$request->search.'%')->get();
 
+            $html = '';
+
+            foreach ($products as $key => $row) {
+                
+                $html .= '<a class="text-primary btn btn-link col-md-12" style="font-size: 22px;" href="' . route('products.show', $row->id) . '">' . $row->title . '</a>';
+            }
+    
+            return json_encode($html);
+    }
     /**
      * Show the form for creating a new resource.
      *

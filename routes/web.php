@@ -20,8 +20,8 @@ use App\Http\Controllers\PharmacyController;
 // Front-end
 Route::get('/', [HomeController::class,'index'])->name('home');
 // Route::post('/products/search', [ProductController::class,'products_search'])->name('products.search');
-Route::post('/products/ajax/search', [HomeController::class,'products_ajax_search'])->name('products.ajax.search');
-Route::get('/products/search', [HomeController::class,'product_search'])->name('products.search');
+Route::post('/products/ajax/search', [ProductController::class,'products_ajax_search'])->name('products.ajax.search');
+Route::get('/products/search', [ProductController::class,'product_search'])->name('products.search');
 // Products Routes
 Route::resource('products', ProductController::class);
 

@@ -1,6 +1,6 @@
 @extends('front_end.layout.index')
 @section('content')
-    <a href="{{ route('products.create') }}" target="_blank" class="site-button support-button">Create New</a>
+    <a href="{{ route('products.create') }}"  class="site-button support-button">Create New</a>
 
 
     <div class="card">
