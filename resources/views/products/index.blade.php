@@ -51,15 +51,19 @@
                         <td>{{ $product->quantity }}</td>
                         <td>
                             <div class="row">
-                                <a class="text-primary btn btn-pure btn-outline col-md-4" href="{{ route('products.edit', $product->id) }}"
+                                <a class="text-primary btn btn-pure btn-outline col-md-3" href="{{ route('products.edit', $product->id) }}"
                                     title="{{ trans('Edit') }}">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
-
+                                <a class="text-primary btn btn-pure btn-outline col-md-3" href="{{ route('products.show', $product->id) }}"
+                                    >
+                                    <i class="fa fa-eye" aria-hidden="true"></i></i>
+                                </a>
+                                
                                 <form method="POST" action="{{ route('products.destroy', $product->id) }}">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="text-danger btn btn-pure btn-outline col-md-4">
+                                    <button type="submit" class="text-danger btn btn-pure btn-outline col-md-3">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>

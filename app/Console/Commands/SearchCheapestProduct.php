@@ -31,6 +31,6 @@ class SearchCheapestProduct extends Command
         $product_id = $this->ask('Enter product id');
         $product = Product::find($product_id);
         // return $this->info($product->title . ' cheapest price is ' . $product->price);
-        return $this->info($product->toJson());
+        return $this->info($product->toJson() . ' cheapest price is ' . $product->pharmacies->sortBy('profit_margin')->take(5)->toJson());
     }
 }

@@ -12,6 +12,7 @@ class Pharmacy extends Model
     public static $rules=[
         'name' => 'required|max:255',
         'address' => 'required|max:255',
+        'profit_margin' => 'required|integer|between:1,30',
     ];
     public function products()
     {

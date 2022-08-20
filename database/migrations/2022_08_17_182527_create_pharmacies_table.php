@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
+            $table->double('profit_margin', 8, 2)->default(5);
             $table->timestamps();
         });
     }

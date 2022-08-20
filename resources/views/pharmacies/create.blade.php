@@ -17,7 +17,21 @@
                                     name="name" class="form-control" required>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-from-label">Profit Margin</label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="pets" name="profit_margin"
+                                    >
+                                    
 
+                                    @foreach ($profit_margin as $i)
+                                        <option value="{{ $i }}">
+                                            {{ $i.'%' }}</option>
+                                    @endforeach
+                                </select>
+                               
+                            </div>
+                        </div>
                         @if ($products->count() > 0)
                             <div class="form-group row">
                                 <label class="col-sm-3 col-from-label">Products</label>
@@ -31,9 +45,7 @@
                                                 {{ $product->title }}</option>
                                         @endforeach
                                     </select>
-                                    @error('country_id')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
+                                   
                                 </div>
                             </div>
                         @endif

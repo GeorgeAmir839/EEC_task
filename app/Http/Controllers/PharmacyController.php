@@ -34,8 +34,12 @@ class PharmacyController extends Controller
      */
     public function create()
     {
+        $profit_margin=[];
+        for($i = 1; $i <= 30; $i++) {
+            $profit_margin[$i] = $i;
+        }
         $products = Product::get();
-        return view('pharmacies.create', compact('products'));
+        return view('pharmacies.create', compact('products', 'profit_margin'));
     }
 
     /**
@@ -64,9 +68,13 @@ class PharmacyController extends Controller
 
     public function edit(Pharmacy $pharmacy)
     {
+        $profit_margin=[];
+        for($i = 1; $i <= 30; $i++) {
+            $profit_margin[$i] = $i;
+        }
         $product_ids = $pharmacy->products->pluck('id')->toArray();
         $products = Product::get();
-        return view("pharmacies.edit", compact('pharmacy', 'products', 'product_ids'));
+        return view("pharmacies.edit", compact('pharmacy', 'products', 'product_ids', 'profit_margin'));
     }
 
     /**

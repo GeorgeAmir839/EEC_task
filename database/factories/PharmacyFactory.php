@@ -19,6 +19,7 @@ class PharmacyFactory extends Factory
         return [
             'name' => fake()->name(),
             'address' => fake()->address(),
+            'profit_margin' => fake()->numberBetween(1, 30),
         ];
     }
 }

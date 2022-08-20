@@ -11,14 +11,30 @@
                         @csrf
                         <input type="hidden" name="_method" value="PATCH">
                         <div class="form-group row">
-                            <label class="col-sm-3 control-label @error('name') is-invalid @enderror"
+                            <label class="col-sm-3 control-label"
                                 for="name">name</label>
                             <div class="col-sm-9">
                                 <input type="text" value="{{ $pharmacy->name }}" placeholder="name " id="name"
                                     name="name" class="form-control" required>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-from-label">Profit Margin</label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="pets" name="profit_margin"
+                                    >
+                                    
 
+                                    @foreach ($profit_margin as $i)
+                                        <option @if ($pharmacy->profit_margin == $i)
+                                            @selected(true)
+                                        @endif value="{{ $i }}">
+                                            {{ $i.'%' }}</option>
+                                    @endforeach
+                                </select>
+                               
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-sm-3 control-label" for="name">About address</label>
                             <div class="col-sm-9">
@@ -40,9 +56,7 @@
                                                 {{ $product->title }}</option>
                                         @endforeach
                                     </select>
-                                    @error('country_id')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
+                                  
                                 </div>
                             </div>
                         @endif

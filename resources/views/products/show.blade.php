@@ -34,7 +34,7 @@
             </table>
             <br>
             <div class="card-header">
-                <h2 class="">product pharmavy details</h2>
+                <h2 class="">Cheaper 5 Pharmacies For This Product</h2>
                
             </div>
             <table class="table">
@@ -47,12 +47,13 @@
                 </thead>
                 <tbody>
                     <tr>
-
-                        @foreach ($product->pharmacies as $pharmacy)
+                       
+                        @foreach ($product->pharmacies->sortBy('profit_margin')->take(5) as $pharmacy)
+                       
                     <tr class="text-center">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $pharmacy->name}}</td>
-                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->price + ($pharmacy->profit_margin * $product->price / 100)}}</td>
                        
                        
                     </tr>
