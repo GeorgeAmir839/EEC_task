@@ -11,10 +11,10 @@ class Product extends Model
     protected $guarded = [];
     public static $rules=[
         'title' => 'required|max:255',
-        'description' => 'required|max:255',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'price' => 'required|numeric',
-        'quantity' => 'required|numeric',
+        // 'description' => 'required|max:255',
+        // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // 'price' => 'required|numeric',
+        // 'quantity' => 'required|numeric',
     ];
     public function pharmacies()
     {

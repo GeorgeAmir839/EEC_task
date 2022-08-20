@@ -1,8 +1,10 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\Product;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Pharmacy;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+       
         \App\Models\Product::factory(50)->create();
         \App\Models\Pharmacy::factory(20)->create(); 
         $products=\App\Models\Product::all();
@@ -24,9 +26,9 @@ class DatabaseSeeder extends Seeder
         }
         
         
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call([
+            CreateProductSeeder::class,
+            CreatePharmacySeeder::class,
+        ]);
     }
 }
